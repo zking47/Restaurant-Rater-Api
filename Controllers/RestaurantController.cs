@@ -24,6 +24,7 @@ namespace RestaurantRaterAPI.Controllers;
             return Ok(restaurants);
         }
 
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetRestaurantById(int id)
         {
             Restaurant? restaurant = await _context.Restaurants.FindAsync(id);
