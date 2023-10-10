@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RestaurantRaterAPI.Data;
 
 namespace RestaurantRaterAPI.Controllers;
@@ -14,5 +15,12 @@ namespace RestaurantRaterAPI.Controllers;
         public RestaurantController(RestaurantDbContext context)
         {
             _context = context;
+        }
+        // Async GET Endpoint
+        [HttpGet]
+        public async Task<IActionResult> GetRestaurants()
+        {
+            List<Restaurant> restaurants = await _context.Restaurants.ToListAsync();
+            return Ok(restaurants);
         }
     }
