@@ -23,4 +23,14 @@ namespace RestaurantRaterAPI.Controllers;
             List<Restaurant> restaurants = await _context.Restaurants.ToListAsync();
             return Ok(restaurants);
         }
+
+        public async Task<IActionResult> GetRestaurantById(int id)
+        {
+            Restaurant? restaurant = await _context.Restaurants.FindAsync(id);
+            if (restaurant is null)
+            {
+                return NotFound();
+            }
+            return Ok(restaurant);
+        }
     }
